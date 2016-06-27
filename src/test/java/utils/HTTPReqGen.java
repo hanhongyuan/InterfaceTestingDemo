@@ -1,12 +1,21 @@
 package utils;
 
-import org.testng.ITest;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
 
+import org.apache.commons.io.IOUtils;
+import org.testng.ITest;
+import org.testng.log4testng.Logger;
+
+import com.jayway.restassured.response.Response;
 import com.jayway.restassured.specification.RequestSpecification;
 
 public class HTTPReqGen implements ITest {
 	
-//	 protected static final Logger logger = LoggerFactory.getLogger(HTTPReqGen.class);
+    protected static final Logger logger = Logger.getLogger(HTTPReqGen.class);
 
 	  private RequestSpecification reqSpec;
 	  private String call_host = "";
@@ -14,6 +23,7 @@ public class HTTPReqGen implements ITest {
 	  private String call_string = "";
 	  private String call_type = "";
 	  private String body = "";
+	  
 	  private Map<String, String> headers = new HashMap<String, String>();
 	  private HashMap<String, String> cookie_list = new HashMap<String, String>();
 
@@ -25,17 +35,14 @@ public class HTTPReqGen implements ITest {
 	    return call_string;
 	  }
 
-	  /**
-	   * Constructor. Initializes the RequestSpecification (relaxedHTTPSValidation avoids certificate errors).
-	   * 
-	   */
-	  public HTTPReqGen() {
-	    reqSpec = given().relaxedHTTPSValidation();
-	  }
 
-	  public HTTPReqGen(String proxy) {
-	    reqSpec = given().relaxedHTTPSValidation().proxy(proxy);
-	  }
+//	  public HTTPReqGen() {
+//	    reqSpec = given().relaxedHTTPSValidation();
+//	  }
+//
+//	  public HTTPReqGen(String proxy) {
+//	    reqSpec = given().relaxedHTTPSValidation().proxy(proxy);
+//	  }
 
 	  /**
 	   * Pulls HashMap from given RecordHandler and calls primary generate_request method with it.

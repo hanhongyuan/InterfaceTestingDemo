@@ -1,6 +1,0 @@
-<<call_type>><<call_suff>> HTTP/1.1
-Host:<<host>>
-Authorization:<<Accept>>
-Content-Type:<<Content_Type>>
-
-<<Body>>
